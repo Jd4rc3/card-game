@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "appcards-17a89": {
+      "hosting": {
+        "card-game": [
+          "appcards-17a89"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "appcards-17a89"
+  }
+}
