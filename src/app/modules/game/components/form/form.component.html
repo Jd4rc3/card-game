@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="form.valid ? submit() : false">
 
   <select multiple formControlName="players">
-    <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+    <option *ngFor="let option of options" [value]="option.uid">{{option.displayName}}</option>
   </select>
 
   <button [disabled]="form.invalid" type="submit">Submit</button>
