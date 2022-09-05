@@ -9,7 +9,7 @@ import {
 import { Player } from '../../../shared/player.model';
 
 @Component({
-  selector: 'new-game-form',
+  selector: 'multi-select-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })

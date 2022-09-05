@@ -1,1 +1,8 @@
-<button (click)="login()">Login</button>
+<div class="container">
+  <p-card [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <p>Log in using your google account to play! 😁</p>
+    <ng-template pTemplate="footer">
+      <p-button (click)="login()" label="Login" icon="pi pi-google"></p-button>
+    </ng-template>
+  </p-card>
+</div>

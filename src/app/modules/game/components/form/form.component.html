@@ -1,9 +1,38 @@
 <form [formGroup]="form" (ngSubmit)="form.valid ? submit() : false">
 
-  <select multiple formControlName="players">
+  <!--<select multiple formControlName="players">
     <option *ngFor="let option of options" [value]="option.uid">{{option.displayName}}</option>
-  </select>
+  </select>-->
 
-  <button [disabled]="form.invalid" type="submit">Submit</button>
+  <p-listbox
+    [options]="options"
+    formControlName="players"
+    aria-placeholder="Search player"
+    [metaKeySelection]="false"
+    [checkbox]="true"
+    [filter]="true"
+    [multiple]="true"
+    optionLabel="displayName"
+    [listStyle]="{ 'max-height': '250px' }"
+    filterPlaceHolder="Search player"
+  >
+    <ng-template let-player pTemplate="item">
+      <div class="country-item flex align-items-center">
+        <div class="circle mr-2"></div>
+        <!--<div class="image-user">
+          <img [src]="player.photoURL" alt="user" />
+        </div>-->
+        <div class="ml-2">{{ player.displayName | titlecase }}</div>
+      </div>
+    </ng-template>
+  </p-listbox>
+
+  <div class="mt-5 color-message font-bold" *ngIf="form.invalid && form.touched">
+    {{ form.get('players')?.getError("minOptions") }}
+    {{ form.get('players')?.getError("maxOptions") }}
+  </div>
+
+  <p-button label="Submit" (click)="submit()" icon="pi pi-send" [disabled]="form.invalid"></p-button>
+  <!--  <p-button (click)="login()" label="Login" icon="pi pi-google"></p-button>-->
 
 </form>

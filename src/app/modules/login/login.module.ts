@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './pages/login/login.component';
-import { ListboxModule } from 'primeng/listbox';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [CommonModule, LoginRoutingModule, ListboxModule],
+  imports: [CommonModule, LoginRoutingModule, CardModule, ButtonModule],
 })
 export class LoginModule {}
