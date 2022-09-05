@@ -3,15 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { GameRoutingModule } from './game-routing.module';
 import { NewGameComponent } from './pages/new-game/new-game.component';
+import { FormComponent } from './components/form/form.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
-  declarations: [
-    NewGameComponent
-  ],
-  imports: [
-    CommonModule,
-    GameRoutingModule
-  ]
+  declarations: [NewGameComponent, FormComponent],
+  imports: [CommonModule, GameRoutingModule, ReactiveFormsModule],
 })
-export class GameModule { }
+export class GameModule {}
