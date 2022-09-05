@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => LoginModule,
-    ...canActivate(() => redirectLoggedInTo(['game'])),
+    ...canActivate(() => redirectLoggedInTo(['/game'])),
   },
   {
     path: 'game',
@@ -22,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), LoginModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
