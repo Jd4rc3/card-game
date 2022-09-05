@@ -3,11 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { LoginModule } from './modules/login/login.module';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { GameModule } from './modules/game/game.module';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,9 +18,8 @@ import { LoginModule } from './modules/login/login.module';
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    LoginModule,
+    // provideAuth(() => getAuth()),
+    AngularFirestoreModule.enablePersistence({ synchronizeTabs: true }),
   ],
   providers: [],
   bootstrap: [AppComponent],

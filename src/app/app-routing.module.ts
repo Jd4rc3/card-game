@@ -7,6 +7,8 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AppModule } from './app.module';
 
 const routes: Routes = [
   {
