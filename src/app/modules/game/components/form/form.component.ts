@@ -6,6 +6,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Player } from '../../../../shared/user.model';
 
 @Component({
   selector: 'new-game-form',
@@ -16,9 +17,7 @@ export class FormComponent implements OnInit {
   form: FormGroup;
 
   @Input()
-  options: { value: any; label: string }[] = [
-    { value: 0, label: 'Here would be some data 😅' },
-  ];
+  options: Player[] = [];
 
   @Input('min')
   minSelectedOptions = 1;

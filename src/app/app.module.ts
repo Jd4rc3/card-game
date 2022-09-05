@@ -4,22 +4,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { LoginModule } from './modules/login/login.module';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { GameModule } from './modules/game/game.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { NewGameComponent } from './modules/game/pages/new-game/new-game.component';
+import { FormComponent } from './modules/game/components/form/form.component';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { LoginComponent } from './modules/login/pages/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NewGameComponent, FormComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    // provideAuth(() => getAuth()),
-    AngularFirestoreModule.enablePersistence({ synchronizeTabs: true }),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

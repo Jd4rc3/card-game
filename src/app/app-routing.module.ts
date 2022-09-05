@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginModule } from './modules/login/login.module';
-import { GameModule } from './modules/game/game.module';
 import {
   canActivate,
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { AppModule } from './app.module';
+import { LoginComponent } from './modules/login/pages/login/login.component';
+import { NewGameComponent } from './modules/game/pages/new-game/new-game.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => LoginModule,
+    component: LoginComponent,
     ...canActivate(() => redirectLoggedInTo(['/game'])),
   },
   {
     path: 'game',
-    loadChildren: () => GameModule,
+    component: NewGameComponent,
     ...canActivate(() => redirectUnauthorizedTo([''])),
   },
 ];
