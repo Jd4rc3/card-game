@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Player } from '../../../shared/player.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'multi-select-form',
@@ -25,7 +26,7 @@ export class FormComponent implements OnInit {
   @Input('max')
   maxSelectedOptions = 1;
 
-  constructor() {
+  constructor(private router: Router) {
     this.form = this.buildForm();
   }
 
@@ -42,7 +43,7 @@ export class FormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
+    this.router.navigate(['game/games']);
   }
 
   private minSelected(control: AbstractControl): ValidationErrors | null {

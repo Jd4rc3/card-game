@@ -25,7 +25,6 @@ export class NewGameComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    console.log('destroyed');
   }
 
   getPlayers() {
@@ -39,7 +38,6 @@ export class NewGameComponent implements OnInit, OnDestroy {
   }
 
   fillPlayers(players: Player[]) {
-    console.log('subscription alive');
     this.players = players.filter((p) => p.online);
   }
 }

@@ -5,7 +5,6 @@ import {
   CollectionReference,
   doc,
   Firestore,
-  getDocs,
   query,
   setDoc,
   where,
@@ -31,11 +30,9 @@ export class PlayerService {
   }
 
   async toggleStatus() {
-    const q = query(this.playersRefference, where('online', '==', true));
+    const qry = query(this.playersRefference, where('online', '==', true));
 
-    getDocs(q).then((querySnapshot) => {
-      console.log(querySnapshot);
-    });
+    return collectionData(qry, { idField: 'uid' }) as Observable<Player[]>;
   }
 
   async addPlayer(player: Player) {

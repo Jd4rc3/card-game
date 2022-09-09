@@ -1,0 +1,15 @@
+<p-menubar [model]="items">
+  <div class="flex align-items-center">
+    <div>
+      <img class="mr-3" [src]="player ? player.photoURL : ''" alt=""/>
+    </div>
+
+    <p-button (click)="logout()">
+      Logout <i class="pi pi-sign-out"></i>
+    </p-button>
+
+  </div>
+</p-menubar>
+
+
+
