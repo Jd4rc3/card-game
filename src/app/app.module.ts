@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './modules/shared/components/navbar/navbar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
+import { PruebaModule } from './modules/prueba/prueba.module';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -25,6 +26,7 @@ import { ButtonModule } from 'primeng/button';
     LoginModule,
     ButtonModule,
     MenubarModule,
+    PruebaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

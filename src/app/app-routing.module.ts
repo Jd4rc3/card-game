@@ -14,6 +14,11 @@ const routes: Routes = [
     ...canActivate(() => redirectLoggedInTo(['/game'])),
   },
   {
+    path: 'login',
+    loadChildren: () =>
+      import('./modules/prueba/prueba.module').then((m) => m.PruebaModule),
+  },
+  {
     path: 'game',
     loadChildren: () =>
       import('./modules/game/game.module').then((m) => m.GameModule),
