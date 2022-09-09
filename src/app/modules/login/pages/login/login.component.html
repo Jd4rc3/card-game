@@ -1,8 +1,14 @@
-<div class="flex justify-content-center align-content-center">
-  <p-card  styleClass="p-card-shadow  ">
-    <p>Log in using your google account to play! 😁</p>
-    <ng-template pTemplate="footer">
-      <p-button (click)="login()" label="Login" icon="pi pi-google"></p-button>
-    </ng-template>
-  </p-card>
+<div class="card-login">
+  <div class="flex justify-content-center align-content-center">
+    <p-card styleClass="p-card-shadow  ">
+      <p>Log in using your google account to play! 😁</p>
+      <ng-template pTemplate="footer">
+        <p-button
+          (click)="login()"
+          label="Login"
+          icon="pi pi-google"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
 </div>

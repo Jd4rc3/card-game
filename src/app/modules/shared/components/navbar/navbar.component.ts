@@ -10,9 +10,13 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[] = [];
-  player!: Player;
+  visible: boolean = true;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.authService.onAuthStateChanged((user) =>
+      user ? (this.visible = false) : (this.visible = true)
+    );
+  }
 
   ngOnInit(): void {
     this.items = [

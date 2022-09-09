@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
-  createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -9,11 +8,14 @@ import {
 import { PlayerService } from '../../game/services/player.service';
 import { Router } from '@angular/router';
 import { Player } from '../../shared/player.model';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  user!: Player | null;
+
   constructor(
     private readonly auth: Auth,
     private playerService: PlayerService,
@@ -32,19 +34,22 @@ export class AuthService {
         online: true,
       };
 
-      this.playerService.addPlayer(newPlayer);
+      this.playerService
+        .addPlayer(newPlayer)
+        .then(() => (this.user = newPlayer));
 
       this.router.navigate(['/game']);
     });
   }
 
-  signUp(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  onAuthStateChanged(func: (user: User | null) => void) {
+    return this.auth.onAuthStateChanged(func);
   }
 
   signOut() {
     return signOut(this.auth).then(() => {
       // this.playerService.toggleStatus();
+      this.user = null;
       this.router.navigate(['/']);
     });
   }
