@@ -42,8 +42,13 @@ export class FormComponent implements OnInit {
     });
   }
 
+  @Input()
+  callback(data: any): any {}
+
   submit() {
-    this.router.navigate(['game/games']);
+    if (this.form.valid) {
+      return this.callback(this.form.value);
+    }
   }
 
   private minSelected(control: AbstractControl): ValidationErrors | null {

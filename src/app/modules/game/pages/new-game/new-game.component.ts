@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { PlayerService } from '../../services/player.service';
 import { Player } from '../../../shared/player.model';
 import { Subscription } from 'rxjs';
+import { GameService } from '../../services/game.service';
+import { WebsocketService } from '../../services/websocket.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   templateUrl: './new-game.component.html',
@@ -11,26 +14,60 @@ import { Subscription } from 'rxjs';
 })
 export class NewGameComponent implements OnInit, OnDestroy {
   players: Player[] = [];
-  subscription!: Subscription;
+  playersSubscription!: Subscription;
+  uuid: string;
 
   constructor(
+    private gameService: GameService,
+    private webSocketService: WebsocketService,
     private authService: AuthService,
     private router: Router,
     private playerService: PlayerService
-  ) {}
+  ) {
+    this.uuid = uuidv4();
+  }
 
   ngOnInit(): void {
     this.getPlayers();
+    this.webSocketService.connect(this.uuid).subscribe(console.log);
+  }
+
+  submit(data: any) {
+    const { players: formPlayers } = data;
+    const playersToSend = this.generatePlayersCommand(formPlayers);
+
+    this.gameService
+      .createGame({
+        gameId: this.uuid,
+        players: playersToSend,
+        mainPlayer: formPlayers[0].uid,
+      })
+      .subscribe({
+        next: console.log,
+        error: console.error,
+        complete: () => {
+          this.router.navigate(['/board']);
+        },
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.playersSubscription.unsubscribe();
   }
 
   getPlayers() {
-    this.subscription = this.playerService
+    this.playersSubscription = this.playerService
       .getPlayers()
       .subscribe(this.fillPlayers.bind(this));
+  }
+
+  private generatePlayersCommand(players: Player[]) {
+    return players.reduce((previousValue, currentValue) => {
+      return {
+        ...previousValue,
+        [currentValue.uid]: currentValue.displayName,
+      };
+    }, {});
   }
 
   logout() {
