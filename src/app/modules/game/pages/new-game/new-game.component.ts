@@ -38,15 +38,17 @@ export class NewGameComponent implements OnInit, OnDestroy {
 
     this.gameService
       .createGame({
-        gameId: this.uuid,
-        players: playersToSend,
-        mainPlayer: formPlayers[0].uid,
+        juegoId: this.uuid,
+        jugadores: playersToSend,
+        jugadorPrincipalId: formPlayers[0].uid,
       })
       .subscribe({
         next: console.log,
         error: console.error,
         complete: () => {
-          this.router.navigate(['/board']);
+          this.router.navigate(['game/games'], {
+            queryParams: { mainPlayerId: this.uuid },
+          });
         },
       });
   }
