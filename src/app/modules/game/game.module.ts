@@ -9,15 +9,23 @@ import { ListboxModule } from 'primeng/listbox';
 import { ButtonModule } from 'primeng/button';
 import { GamesPanelComponent } from './pages/games-panel/games-panel.component';
 import { FieldsetModule } from 'primeng/fieldset';
+import { BoardComponent } from './pages/board/board.component';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
-  declarations: [NewGameComponent, FormComponent, GamesPanelComponent],
+  declarations: [
+    NewGameComponent,
+    FormComponent,
+    GamesPanelComponent,
+    BoardComponent,
+  ],
   imports: [
     CommonModule,
     GameRoutingModule,
     ReactiveFormsModule,
     ButtonModule,
     ListboxModule,
+    ProgressBarModule,
     FieldsetModule,
   ],
 })

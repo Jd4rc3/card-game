@@ -18,4 +18,12 @@ export class GameService {
   getGames(uid: string): Observable<GameModel[]> {
     return this.http.get<GameModel[]>(`${this.BASE_URL}/games/`);
   }
+
+  startGame(gameId: string) {
+    return this.http.post(`${this.BASE_URL}/game/start`, { gameId });
+  }
+
+  getBoard(gameId: string) {
+    return this.http.get(`${this.BASE_URL}/${gameId}/board`);
+  }
 }

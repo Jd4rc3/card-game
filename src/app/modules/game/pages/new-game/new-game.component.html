@@ -2,4 +2,19 @@
   <div class="col md:col-6">
     <multi-select-form [min]="1" [callback]="submit.bind(this)" [max]="5" [options]="players"></multi-select-form>
   </div>
+
+  <div *ngIf="visible"
+       class="absolute top-0 w-full h-full flex justify-content-center align-items-center surface-400 opacity-60">
+    <div class="grid w-full flex justify-content-center relative">
+      <div class="col-12 top-0 md:col-6 absolute opacity-100">
+        <h1 class="text-center opacity-100">
+          wait a moment please, we are creating the game....
+        </h1>
+        <p-progressBar
+          [style]="{ height: '40px' }"
+          [value]="progress"
+        ></p-progressBar>
+      </div>
+    </div>
+  </div>
 </div>
