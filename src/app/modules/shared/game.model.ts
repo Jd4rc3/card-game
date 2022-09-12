@@ -1,11 +1,11 @@
-import { Player } from './player.model';
+import { Players } from './players.mode';
 
 export interface GameModel {
   id: string;
-  iniciado: boolean;
-  finalizado: boolean;
+  started: boolean;
+  finished: boolean;
   uid: string;
-  cantidadJugadores: number;
-  jugadores: { [key: string]: Player };
-  ganador: null;
+  numberOfPlayers: number;
+  players: Players;
+  winner: null;
 }
