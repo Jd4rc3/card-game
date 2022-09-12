@@ -20,25 +20,22 @@ export class AuthService {
     private readonly auth: Auth,
     private playerService: PlayerService,
     private router: Router
-  ) {}
+  ) {
+    this.onAuthStateChanged((user) => {
+      if (user != null) {
+        this.user = this.instancePlayer(user);
+      }
+    });
+  }
 
   signInWithGoogle() {
     signInWithPopup(this.auth, new GoogleAuthProvider()).then((loggedUser) => {
-      const { uid, email, photoURL, displayName } = loggedUser.user;
-
-      const newPlayer: Player = {
-        uid,
-        email,
-        photoURL,
-        displayName,
-        online: true,
-      };
+      const newPlayer = this.instancePlayer(loggedUser.user);
 
       this.playerService
         .addPlayer(newPlayer)
-        .then(() => (this.user = newPlayer));
-
-      this.router.navigate(['/game']);
+        .then(() => (this.user = newPlayer))
+        .then(() => this.router.navigate(['/game']));
     });
   }
 
@@ -48,9 +45,38 @@ export class AuthService {
 
   signOut() {
     return signOut(this.auth).then(() => {
-      // this.playerService.toggleStatus();
-      this.user = null;
-      this.router.navigate(['/']);
+      this.playerService.toggleStatus(this.getLoggedUser()).then(() => {
+        this.user = null;
+        this.router.navigate(['/']);
+      });
     });
+  }
+
+  getLoggedUser() {
+    if (this.user != null) {
+      return this.user;
+    }
+
+    alert('You are not logged in');
+    this.router.navigate(['/']);
+    return {} as Player;
+  }
+
+  instancePlayer(loggedUser: User | null): Player {
+    if (loggedUser != null) {
+      const { photoURL, uid, email, displayName } = loggedUser;
+
+      return {
+        uid,
+        email,
+        photoURL,
+        displayName,
+        available: true,
+      };
+    }
+
+    alert('You are not logged in');
+    this.router.navigate(['/']);
+    return {} as Player;
   }
 }

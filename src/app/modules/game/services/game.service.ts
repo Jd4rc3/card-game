@@ -12,10 +12,10 @@ export class GameService {
   constructor(private http: HttpClient) {}
 
   createGame(body: any): Observable<object> {
-    return this.http.post(`${this.BASE_URL}/juego/crear/`, body);
+    return this.http.post(`${this.BASE_URL}/game/create`, body);
   }
 
   getGames(uid: string): Observable<GameModel[]> {
-    return this.http.get<GameModel[]>(`${this.BASE_URL}/juegos/listar/${uid}`);
+    return this.http.get<GameModel[]>(`${this.BASE_URL}/games/`);
   }
 }

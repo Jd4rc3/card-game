@@ -29,18 +29,21 @@ export class NewGameComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPlayers();
-    this.webSocketService.connect(this.uuid).subscribe(console.log);
+    this.webSocketService.connect(this.uuid).subscribe({
+      next: () => this.router.navigate(['/game/games']),
+    });
   }
 
   submit(data: any) {
     const { players: formPlayers } = data;
     const playersToSend = this.generatePlayersCommand(formPlayers);
+    const { uid, displayName } = this.authService.getLoggedUser();
 
     this.gameService
       .createGame({
         gameId: this.uuid,
         players: playersToSend,
-        mainPlayer: formPlayers[0].uid,
+        mainPlayerId: uid,
       })
       .subscribe({
         next: console.log,
@@ -62,12 +65,16 @@ export class NewGameComponent implements OnInit, OnDestroy {
   }
 
   private generatePlayersCommand(players: Player[]) {
-    return players.reduce((previousValue, currentValue) => {
-      return {
-        ...previousValue,
-        [currentValue.uid]: currentValue.displayName,
-      };
-    }, {});
+    const { uid, displayName } = this.authService.getLoggedUser();
+    return players.reduce(
+      (previousValue, currentValue) => {
+        return {
+          ...previousValue,
+          [currentValue.uid]: currentValue.displayName,
+        };
+      },
+      { [uid]: displayName }
+    );
   }
 
   logout() {
@@ -75,6 +82,10 @@ export class NewGameComponent implements OnInit, OnDestroy {
   }
 
   fillPlayers(players: Player[]) {
-    this.players = players.filter((p) => p.online);
+    const loggedUser = this.authService.getLoggedUser();
+
+    this.players = players.filter(
+      (p) => p.uid !== loggedUser.uid && p.available
+    );
   }
 }

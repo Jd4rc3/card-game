@@ -3,5 +3,5 @@ export interface Player {
   email: string | null;
   photoURL?: string | null;
   displayName?: string | null;
-  online: boolean;
+  available: boolean;
 }

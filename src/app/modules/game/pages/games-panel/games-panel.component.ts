@@ -7,15 +7,7 @@ import { Player } from '../../../shared/player.model';
   styleUrls: ['./games-panel.component.scss'],
 })
 export class GamesPanelComponent implements OnInit {
-  games: Player[] = [
-    {
-      uid: 'zxc',
-      online: true,
-      email: '',
-      displayName: 'PedritoGame',
-      photoURL: '',
-    },
-  ];
+  games: Player[] = [];
 
   constructor() {}
 
