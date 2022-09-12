@@ -2,13 +2,13 @@
 
 <div class="grid mt-5 flex justify-content-center">
   <div class="col md:col-8">
-    <form (ngSubmit) ="form.valid ? submit() : false" [formGroup]="form">
+    <form (ngSubmit)="form.valid ? submit() : false" [formGroup]="form">
       <p-fieldset [toggleable]="true" legend="Games">
         <p-listbox
           optionValue="id"
           formControlName="gameId"
           [options]="games"
-          optionLabel="id"
+          optionLabel="name"
         >
         </p-listbox>
       </p-fieldset>
@@ -16,5 +16,3 @@
     </form>
   </div>
 </div>
-
-

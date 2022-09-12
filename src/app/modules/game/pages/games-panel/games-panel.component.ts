@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./games-panel.component.scss'],
 })
 export class GamesPanelComponent implements OnInit {
-  games: GameModel[] = [];
+  games: any = [];
   form!: FormGroup;
 
   constructor(private gameService: GameService, private router: Router) {
@@ -25,9 +25,15 @@ export class GamesPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gameService.getGames('asd').subscribe((games) => {
-      this.games = games;
-      console.log(this.games);
+    this.gameService.getGames().subscribe((games) => {
+      const filteredGames = games.filter(
+        (game) => !game.started && !game.finished
+      );
+
+      this.games = filteredGames.map((game, index) => ({
+        ...game,
+        name: `#${index + 1}`,
+      }));
     });
   }
 
