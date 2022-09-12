@@ -37,7 +37,7 @@ export class NewGameComponent implements OnInit, OnDestroy {
   submit(data: any) {
     const { players: formPlayers } = data;
     const playersToSend = this.generatePlayersCommand(formPlayers);
-    const { uid, displayName } = this.authService.getLoggedUser();
+    const { uid } = this.authService.getLoggedUser();
 
     this.gameService
       .createGame({
