@@ -1,37 +1,37 @@
 <div class="container">
   <div class="menu-bar">
-    <menu-bar [disabled]="disable" [time]="board ? board.round.time : 0" [round]="board?board.round.number : 0"
-              [players]="board ? board.players.length : 0">
+    <menu-bar
+      [disabled]="disable"
+      [time]="board ? board.round.time : 0"
+      [round]="board ? board.round.number : 0"
+      [players]="board ? board.players.length : 0"
+    >
     </menu-bar>
   </div>
   <div class="grid">
+    <div class="board col-12 md:col-7 mt-5">
+      <div class="justify-content-evenly flex flex-wrap">
+        <div class="crd p-2">
+          <div class="card-content"></div>
+        </div>
 
-    <div class="board col-12 md:col-7 mt-5  justify-content-evenly flex flex-wrap">
-
-      <div class="crd p-2">
-        <div class="card-content"></div>
+        <div class="crd p-2">
+          <div class="card-content"></div>
+        </div>
+        <div class="crd p-2">
+          <div class="card-content"></div>
+        </div>
+        <div class="crd p-2">
+          <div class="card-content"></div>
+        </div>
+        <div class="crd p-2">
+          <div class="card-content"></div>
+        </div>
       </div>
-
-
-      <div class="crd p-2">
-        <div class="card-content"></div>
-      </div>
-      <div class="crd p-2">
-        <div class="card-content"></div>
-      </div>
-      <div class="crd p-2">
-        <div class="card-content"></div>
-      </div>
-      <div class="crd p-2">
-        <div class="card-content"></div>
-      </div>
-
-
     </div>
 
-    <div class="cards-container mt-4  col-12 md:col-5">
+    <div class="cards-container mt-4 col-12 md:col-5">
       <deck [cards]="deck.deck"></deck>
     </div>
-
   </div>
 </div>
