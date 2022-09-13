@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GameModel } from '../../shared/game.model';
+import { Deck } from '../../shared/deck.model';
+import { Board } from '../../shared/board.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,10 @@ export class GameService {
   }
 
   getBoard(gameId: string) {
-    return this.http.get(`${this.BASE_URL}/${gameId}/board`);
+    return this.http.get<Board>(`${this.BASE_URL}/${gameId}/board`);
+  }
+
+  getDeck(playerId: string, gameId: string) {
+    return this.http.get<Deck>(`${this.BASE_URL}/deck/${playerId}/${gameId}`);
   }
 }

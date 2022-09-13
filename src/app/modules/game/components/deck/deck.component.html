@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="surface-card">
+    <!--<div class="text-3xl font-medium text-900 mb-3">
+    </div>-->
+
+    <div class="font-medium text-500 mb-3"></div>
+    <div class="border-2 border-dashed flex flex-wrap justify-content-evenly surface-border">
+
+      <div *ngFor="let card of cards" class="card p-3">
+
+        <div class="card-container">
+
+          <div class="container-img">
+            <img src="{{card.uri}}" alt="Avatar" class="image">
+          </div>
+          <div class="overlay">
+            <div class="text">{{card.power}}</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

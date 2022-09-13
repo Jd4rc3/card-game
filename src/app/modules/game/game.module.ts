@@ -11,6 +11,10 @@ import { GamesPanelComponent } from './pages/games-panel/games-panel.component';
 import { FieldsetModule } from 'primeng/fieldset';
 import { BoardComponent } from './pages/board/board.component';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { DeckComponent } from './components/deck/deck.component';
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ToolbarModule } from 'primeng/toolbar';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     FormComponent,
     GamesPanelComponent,
     BoardComponent,
+    DeckComponent,
+    MenuBarComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +33,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     ListboxModule,
     ProgressBarModule,
     FieldsetModule,
+    SplitButtonModule,
+    ToolbarModule,
   ],
 })
 export class GameModule {}
