@@ -9,9 +9,9 @@ import { Card } from '../../../shared/card.model';
 export class DeckComponent implements OnInit {
   @Input() cards: Card[] = [];
 
+  @Input() disabled: boolean = true;
+
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.cards);
-  }
+  ngOnInit(): void {}
 }

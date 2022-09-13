@@ -6,4 +6,5 @@ export interface Board {
   round: Round;
   players: string[];
   cards: Card | {};
+  mainPlayerId: string;
 }

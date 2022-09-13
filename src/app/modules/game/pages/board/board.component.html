@@ -1,6 +1,6 @@
 <div class="container">
   <div class="menu-bar">
-    <menu-bar [time]="board ? board.round.time : 0" [round]="board?board.round.number : 0"
+    <menu-bar [disabled]="disable" [time]="board ? board.round.time : 0" [round]="board?board.round.number : 0"
               [players]="board ? board.players.length : 0">
     </menu-bar>
   </div>

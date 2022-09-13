@@ -12,6 +12,8 @@ export class MenuBarComponent implements OnInit {
 
   @Input() players: number | undefined = 0;
 
+  @Input() disabled = true;
+
   constructor() {}
 
   ngOnInit(): void {}

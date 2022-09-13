@@ -14,7 +14,14 @@
             <img src="{{card.uri}}" alt="Avatar" class="image">
           </div>
           <div class="overlay">
-            <div class="text">{{card.power}}</div>
+            <div class="text">
+              <div>
+                Power: {{card.power}}
+              </div>
+              <div>
+                <p-button  [disabled]="disabled" icon="pi pi-play">Bet</p-button>
+              </div>
+            </div>
           </div>
 
         </div>

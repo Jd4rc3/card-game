@@ -5,7 +5,6 @@ import { Deck } from '../../../shared/deck.model';
 import { AlertService } from '../../../shared/alert.service';
 import { AuthService } from '../../../login/services/auth.service';
 import { Board } from '../../../shared/board.model';
-import { Player } from '../../../shared/player.model';
 
 @Component({
   templateUrl: './board.component.html',
@@ -15,7 +14,8 @@ export class BoardComponent implements OnInit {
   gameId!: string;
   deck: Deck = {} as Deck;
   board!: Board;
-  mainPlayer!: Player;
+  disable: boolean = true;
+  putButtonDisable: boolean = true;
 
   constructor(
     private gameService: GameService,
@@ -31,6 +31,11 @@ export class BoardComponent implements OnInit {
     this.getBoard();
 
     this.setDeck();
+  }
+
+  private buttonDisabled() {
+    if (this.board.mainPlayerId === this.authService.getLoggedUser().uid)
+      this.disable = false;
   }
 
   private setDeck() {
@@ -53,8 +58,10 @@ export class BoardComponent implements OnInit {
   getBoard() {
     this.gameService.getBoard(this.gameId).subscribe({
       next: (board) => {
-        console.log(board);
         this.board = board;
+        this.buttonDisabled();
+        this.putButtonDisable = !this.board.round.isStarted;
+        console.log(board);
       },
       error: (error) => {
         this.alertService.errorMessage(error.error.message);
